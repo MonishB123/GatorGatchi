@@ -37,7 +37,7 @@ def qmaker():
     else:
         return f"Error: Unable to fetch page (Status Code: {response.status_code})"
 
-    prompt = "<prompt>Generate 3-4 questions and answers given the following text. Only generate questions that relate to the main theme of the text, if there is a error code, just say exactly 'there was an error with your request' </prompt> <text>" + text + "</text>"
+    prompt = "<prompt>Generate 3 questions and answers given the following text. Only generate questions that relate to the main theme of the text, if there is a error code, just say exactly 'there was an error with your request' </prompt> <text>" + text + "</text>"
     response = model.generate_content(prompt).text
     return jsonify({"questions" : response})
 
