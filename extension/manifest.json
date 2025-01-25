@@ -4,7 +4,7 @@
     "version": "1.0",
     "description": "A gator that helps you learn",
     "icons": {
-      "128": "icon.png"
+      "128": "../assets/icon.png"
     },
     "permissions": ["storage"],
     "host_permissions": ["<all_urls>"] ,
@@ -13,7 +13,7 @@
     },
     "content_scripts": [
       {
-        "matches": ["https://www.youtube.com/"],
+        "matches": ["<all_urls>"],
         "js": ["content.js"],
         "run_at": "document_idle"
       }
