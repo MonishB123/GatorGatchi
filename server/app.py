@@ -4,22 +4,19 @@ from flask_cors import CORS
 import requests
 from bs4 import BeautifulSoup
 
-
-# read api key from secrets
+# Read API key from secrets
 with open("../secrets/gemini_key.txt", "r", encoding="utf-8") as file:
     key = file.read()
 
-# create model  
+# Configure the Gemini model
 genai.configure(api_key=key)
 model = genai.GenerativeModel("gemini-1.5-flash")
 
-
-# setup flask api
+# Setup Flask API
 app = Flask(__name__)
 CORS(app)
 
-# api methods
-@app.route('/qmaker', methods = ['POST'])
+@app.route('/qmaker', methods=['POST'])
 def qmaker():
     print('request received')
     data = request.get_json()
@@ -27,19 +24,36 @@ def qmaker():
         return jsonify({"error": "Missing 'text' field"}), 400
     
     text = data['text']
-    #webscrape text off link
-    headers = {'User-Agent': 'Mozilla/5.0'}  # Prevents being blocked
+
+    # Web scrape text from the provided URL
+    headers = {'User-Agent': 'Mozilla/5.0'}
     response = requests.get(text, headers=headers)
 
     if response.status_code == 200:
         soup = BeautifulSoup(response.text, 'html.parser')
         text = soup.get_text(separator='\n', strip=True)  # Extracts visible text
     else:
-        return f"Error: Unable to fetch page (Status Code: {response.status_code})"
+        return jsonify({"error": f"Unable to fetch page (Status Code: {response.status_code})"}), 400
 
-    prompt = "<prompt>Generate 3 questions and answers given the following text. Only generate questions that relate to the main theme of the text, if there is a error code, just say exactly 'there was an error with your request' </prompt> <text>" + text + "</text>"
-    response = model.generate_content(prompt).text
-    return jsonify({"questions" : response})
+    # Generate questions and answers using Gemini API
+    prompt = (
+        "Generate 3 questions and their respective answers based on the following text. "
+        "Return the response in the following JSON format:\n"
+        "{'questions': [{'question': '...', 'answer': '...'}, {'question': '...', 'answer': '...'}, ...]} "
+        "If there is an error or the content is not meaningful, respond with: {'error': 'there was an error with your request'}\n"
+        f"Text:\n{text}"
+    )
+
+    try:
+        response = model.generate_content(prompt).text
+        
+        # Ensure the response is valid JSON
+        import json
+        parsed_response = json.loads(response)
+        return jsonify(parsed_response)
+    
+    except Exception as e:
+        return jsonify({"error": "there was an error with your request"}), 500
 
 
 if __name__ == "__main__":
