@@ -1,8 +1,8 @@
 {
     "manifest_version": 3,
-    "name": "Screen Cat",
+    "name": "GatorGatchi",
     "version": "1.0",
-    "description": "A cat that moves around your screen",
+    "description": "A gator that helps you learn",
     "icons": {
       "128": "icon.png"
     },
@@ -20,7 +20,7 @@
     ],
     "web_accessible_resources": [
     {
-      "resources": ["cat.gif"],
+      "resources": ["gator.gif"],
       "matches": ["<all_urls>"]
     }
     ]
