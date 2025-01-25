@@ -58,6 +58,7 @@ def qmaker():
     parsed_response = json.loads(response)
     return jsonify(parsed_response)
 
+#generates an image url given a website 
 @app.route('/find_image', methods=['POST'])
 def random_image():
     data = request.get_json()
@@ -86,7 +87,6 @@ def random_image():
         return jsonify({"image_url": random_img_url})
     else:
         return jsonify({"error": f"Failed to fetch the webpage. Status Code: {response.status_code}"}), 400
-
 
 if __name__ == "__main__":
     app.run(debug=True)
