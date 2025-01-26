@@ -93,3 +93,37 @@ fetch('http://127.0.0.1:5000/select_link') // Replace with your Flask API URL
 
     })
     .catch(error => console.error("Error fetching data from API:", error));
+
+async function fetchQuiz() {
+    try {
+        const response = await fetch('http://127.0.0.1:5000/qmaker', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ url: 'https://steamcommunity.com/workshop/browse/?appid=371970&browsesort=trend&section=readytouseitems' })
+        });
+        const data = await response.json();
+        
+        if (data.error) {
+            document.querySelector('.quizQuestion').innerText = "Error fetching quiz.";
+            return;
+        }
+        
+        document.querySelector('.quizQuestion').innerText = data.question;
+        const answersContainer = document.querySelector('.quizAnswers');
+        answersContainer.innerHTML = '';
+        
+        data.answers.forEach(answer => {
+            const label = document.createElement('label');
+            const checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            label.appendChild(checkbox);
+            label.appendChild(document.createTextNode(` ${answer.answer}`));
+            answersContainer.appendChild(label);
+            answersContainer.appendChild(document.createElement('br'));
+        });
+    } catch (error) {
+        console.error('Error fetching quiz:', error);
+    }
+}
+
+fetchQuiz();
