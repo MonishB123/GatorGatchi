@@ -6,4 +6,10 @@ Our GatorGotchi prompts users to learn about specific topics within their chosen
 
 GatorGotchi also motivates users to regularly interact with the GatorGotchi, as students are driven to maintain its "health" by using it daily, and improve its "happiness" by answering question correctly. The GatorGotchi is reactive to student involvement, expressing its health and happiness levels through a variety of chibi-inspired facial animations.
 
-Our Project includes a Flask-based Backend, a JavaScript front-end for the design of the extension, and Google Gen-AI API to generate both questions and answers to test the user. 
+Our Project includes a Flask-based Backend, a JavaScript front-end for the design of the extension, and Google Gen-AI API to generate both questions and answers to test the user.
+
+Installation Instructions:
+- Open chrome://extensions
+- Turn on developer mode
+- Select load unpack and extensions folder
+- To run Flask, run "python server/app.py" in the local cmd
