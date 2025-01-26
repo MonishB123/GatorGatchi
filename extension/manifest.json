@@ -29,7 +29,7 @@
   ],
   "web_accessible_resources": [
     {
-      "resources": ["base_gif.gif", "popup.html", "layout.css", "technology.jpg"], 
+      "resources": ["base_gif.gif", "popup.html", "layout.css", "technology.jpg", "coolgator.gif", "cryinggator.gif", "zombie.gif"], 
       "matches": ["<all_urls>"]
     }
   ]

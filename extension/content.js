@@ -129,23 +129,54 @@ fetch('http://127.0.0.1:5000/select_link') // Fetch link first
 
             // Handle correct/incorrect answer selection
             button.onclick = () => {
+                const gatorImage = sidebar.querySelector(".gator");
+                const healthBar = sidebar.querySelector(".healthBar");
+                const happinessBar = sidebar.querySelector(".happinessBar"); // Fixed typo
+                
+                if (!gatorImage || !healthBar || !happinessBar) {
+                    console.error("One or more elements not found.");
+                    return;
+                }
+            
+                // Get current height and convert to integer
+                let currentHeight = parseInt(window.getComputedStyle(happinessBar).height, 10);
+            
                 if (answer.correct) {
                     alert("Correct!");
-                    
-                    // Change the gator image source when the answer is correct
-                    const gatorImage = sidebar.querySelector(".gator");
-                    if (gatorImage) {
-                        gatorImage.src = chrome.runtime.getURL("new_gator_image.gif"); // Change to the new gator image
+            
+                    // Increase height by 50px but cap at 150px
+                    if (currentHeight < 150) {
+                        happinessBar.style.height = `${Math.min(currentHeight + 50, 150)}px`;
+                        healthBar.style.height = `${Math.min(currentHeight + 50, 150)}px`;
                     }
+            
+                    // Change the gator image source
+                    gatorImage.src = chrome.runtime.getURL("coolgator.gif");
                 } else {
                     alert("Wrong answer! Try again.");
+            
+                    // Decrease height by 50px but keep it above 0px
+                    if (currentHeight > 0) {
+                        happinessBar.style.height = `${Math.max(currentHeight - 50, 0)}px`;
+                        healthBar.style.height = `${Math.max(currentHeight - 50, 0)}px`;
+                        healthBar.style.color = "yellow";
+                        happinessBar.style.color = "yellow";
+                    }
+            
+                    // Change the gator image source based on current state
+                    if (gatorImage.src === chrome.runtime.getURL("cryinggator.gif")) {
+                        gatorImage.src = chrome.runtime.getURL("zombie.gif");
+                    } else {
+                        gatorImage.src = chrome.runtime.getURL("cryinggator.gif");
+                    }
                 }
             };
+            
             
 
             quizAnswersDiv.appendChild(button); // Add button to quizAnswers div
         });
-
+        
         // **Dynamically adjust quizContainer size**
         quizContainer.style.display = "flex";
         quizContainer.style.flexDirection = "column";
