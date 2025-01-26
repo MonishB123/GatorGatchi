@@ -88,5 +88,7 @@ def random_image():
     else:
         return jsonify({"error": f"Failed to fetch the webpage. Status Code: {response.status_code}"}), 400
 
+
+
 if __name__ == "__main__":
     app.run(debug=True)

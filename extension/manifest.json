@@ -6,7 +6,12 @@
   "icons": {
     "128": "icon.png"
   },
-  "permissions": ["storage"],
+  "permissions": [
+    "activeTab",
+    "https://*/*",
+    "http://*/*",
+    "storage"
+],
   "host_permissions": [
     "https://gatorgachi.firebaseapp.com/*",
     "https://*.firebaseio.com/*",
@@ -17,7 +22,7 @@
   },
   "content_scripts": [
     {
-      "matches": ["https://www.youtube.com/*"],
+      "matches": ["<all_urls>"],
       "js": ["content.js"],
       "run_at": "document_idle"
     }
@@ -25,7 +30,7 @@
   "web_accessible_resources": [
     {
       "resources": ["base_gif.gif", "popup.html", "layout.css"], 
-      "matches": ["https://www.youtube.com/*"]
+      "matches": ["<all_urls>"]
     }
   ]
 }
