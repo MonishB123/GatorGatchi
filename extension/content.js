@@ -98,5 +98,42 @@ fetch('http://127.0.0.1:5000/select_link') // Fetch link first
         });
     })
     .then(response => response.json())
-    .then(data => console.log("QMaker Response:", data))
+    .then(data => {
+        console.log("QMaker Response:", data);
+
+        if (data.error) {
+            document.querySelector('.quizQuestion').textContent = "Error generating quiz.";
+            return;
+        }
+
+        // Get the elements for question and answers
+        const quizQuestion = document.querySelector('.quizQuestion');
+        const quizContainer = document.querySelector('.quizContainer');
+
+        // Set the question text
+        quizQuestion.textContent = data.question;
+
+        // Clear previous answers (if any)
+        const quizAnswersDiv = document.querySelector('.quizAnswers');
+        quizAnswersDiv.innerHTML = ""; // Clear existing buttons
+
+        // Create answer buttons
+        data.answers.forEach(answer => {
+            const button = document.createElement('button');
+            button.textContent = answer.answer;
+            button.classList.add('quizAnswerButton'); // Add a class for styling
+
+            // Handle correct/incorrect answer selection
+            button.onclick = () => {
+                if (answer.correct) {
+                    alert("Correct!");
+                } else {
+                    alert("Wrong answer! Try again.");
+                }
+            };
+
+            quizAnswersDiv.appendChild(button); // Add button to quizAnswers div
+        });
+    })
     .catch(error => console.error("Error:", error));
+
