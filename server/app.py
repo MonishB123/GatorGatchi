@@ -24,10 +24,10 @@ CORS(app)
 def qmaker():
     print('request received')
     data = request.get_json()
-    if not data or 'text' not in data:
+    if not data or 'url' not in data:
         return jsonify({"error": "Missing 'text' field"}), 400
     
-    text = data['text']
+    text = data['url']
 
     # Web scrape text from the provided URL
     headers = {'User-Agent': 'Mozilla/5.0'}
@@ -41,9 +41,9 @@ def qmaker():
 
     # Generate questions and answers using Gemini API
     prompt = (
-        "Generate 3 questions and their respective answers based on the following text. "
-        "Only include the questions and answers in the following JSON format, no filler:\n"
-        "{'questions': [{'question': '...', 'answer': '...'}, {'question': '...', 'answer': '...'}, ...]} "
+        "Generate 1 question and its 3 multiple choice answers based on the following text, only fetch informatiom relating to the main topics of the text. Only one answer should be correct, the rest should be wrong. "
+        "Only include the question and answers in the following JSON format, no filler:\n"
+        "{'question': '...', 'answers': [{'answer': '...', 'correct': true}, {'answer': '...', 'correct': false}, ...]}"
         "If there is an error or the content is not meaningful, respond with: {'error': 'there was an error with your request'}\n"
         f"Text:\n{text}"
     )
