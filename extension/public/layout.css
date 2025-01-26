@@ -1,0 +1,198 @@
+.popupContainer {
+    width: 271px; 
+    height: 820px; 
+    background: #DBDEAA;
+    float: right;
+}
+
+h1 {
+    /*color: linear-gradient(-20deg, #104547 0%, #733b36 100%);*/
+    text-align: center;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    -webkit-text-stroke-width: 1;
+    -webkit-text-stroke-color: #FFF;
+    font-family: "Pixelify Sans";
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.welcome {
+    color: #FFF;
+    text-align: center;
+    -webkit-text-stroke-width: 1;
+    -webkit-text-stroke-color: #000;
+    font-family: "Pixelify Sans";
+    font-size: 23px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.statsContainer {
+    display: flex;
+    align-items: center; /* Aligns elements vertically in the center */
+    justify-content: center; /* Centers everything horizontally */
+    gap: 20px; /* Adds spacing between the elements */
+    padding: 0 2px;
+}
+
+.gator {
+    width: 75px;
+    height: auto;
+    margin: 0 auto; /* Keep gator centered */
+}
+
+.healthContainer {
+    display: flex;
+    flex-direction: column; /* Stack the text and bar vertically */
+    align-items: center; /* Center text and bar horizontally */
+    gap: 8px; /* Add spacing between text and bar */
+    margin-left: 2px; /* Ensures it stays 2px from the left */
+}
+
+.healthText {
+    flex-direction: column;
+    color: #1E1E1E;
+    text-decoration-line: underline;
+    text-decoration-style: solid;
+    text-decoration-skip-ink: auto;
+    text-decoration-thickness: auto;
+    text-underline-offset: auto;
+    text-underline-position: from-font;
+    text-align: right;
+    font-family: "Pixelify Sans";
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    padding-top: 10px;
+    padding-right: 5px;
+    padding-left: 5px;
+}
+
+.healthBar {
+    position: relative;
+    display: flex;
+    flex-direction: center;
+    height: 150px;
+    width: 10px;
+    background-color: rgb(129, 174, 120);
+    border: 2px solid rgb(17, 121, 33);
+    padding: 10px;
+    margin: 10px;
+    overflow: hidden;
+}
+
+.happinessContainer {
+    display: flex;
+    flex-direction: column; /* Stack the text and bar vertically */
+    align-items: center; /* Center text and bar horizontally */
+    gap: 8px; /* Add spacing between text and bar */
+    margin-right: 2px; /* Ensures it stays 2px from the right */
+}
+
+.happinessText {
+    display: flex;
+    flex-direction: column;
+    color: #1E1E1E;
+    text-decoration-line: underline;
+    text-decoration-style: solid;
+    text-decoration-skip-ink: auto;
+    text-decoration-thickness: auto;
+    text-underline-offset: auto;
+    text-underline-position: from-font;
+    text-align: center;
+    font-family: "Pixelify Sans";
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    padding-top: 10px;
+    padding-right: 5px;
+    padding-left: 5px;
+}
+
+.happinessBar {
+    align-items: right;
+    position: relative;
+    display: flex;
+    flex-direction: right;
+    height: 150px;
+    width: 10px;
+    background-color: rgb(129, 174, 120);
+    border: 2px solid rgb(17, 121, 33);
+    padding: 10px;
+    margin: 10px;
+}
+
+.lessonText {
+    color: #1E1E1E;
+    text-align: center;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-family: "Pixelify Sans";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-decoration-line: underline;
+    text-decoration-style: solid;
+    text-decoration-skip-ink: auto;
+    text-decoration-thickness: auto;
+    text-underline-offset: auto;
+}
+
+.quizText {
+    color: #1E1E1E;
+    text-align: center;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-family: "Pixelify Sans";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-decoration-line: underline;
+    text-decoration-style: solid;
+    text-decoration-skip-ink: auto;
+    text-decoration-thickness: auto;
+    text-underline-offset: auto;
+    text-underline-position: from-font;
+}
+
+.articleContainer {
+    display: flex;
+    justify-content: center; /* Aligns horizontally */
+    align-items: center; /* Aligns vertically */
+    height: 150px; /* Full viewport height to center vertically */
+}
+
+.articleimage {
+    width: 200px;
+    height: 120px;
+    background-color: rgb(129, 174, 120);
+    border: 2px solid rgb(17, 121, 33);
+    padding: 10px;
+    margin: 10px;
+    border-radius: 40px;
+
+}
+
+.quizContainer {
+    display: flex;
+    justify-content: center; /* Aligns horizontally */
+    align-items: center; /* Aligns vertically */
+    height: 150px; /* Full viewport height to center vertically */
+}
+
+.quizQuestion {
+    width: 200px;
+    height: 120px;
+    background-color: rgb(129, 174, 120);
+    border: 2px solid rgb(17, 121, 33);
+    padding: 10px;
+    margin: 10px;
+    border-radius: 40px;
+}
+
+

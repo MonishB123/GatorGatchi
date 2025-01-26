@@ -1,22 +1,53 @@
 <!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Virtual Pet</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-
-<body>
-    <h1>🐶 Virtual Pet</h1>
-    <button id="signInBtn">Sign in with Google</button>
-    <div id="petContainer">
-        <img id="petImage" src="icons/happy-pet.png" width="100">
-        <p>XP: <span id="xpCounter">0</span></p>
-    </div>
-    <button id="readArticleBtn">Read an Article</button>
-    <script src="popup.js"></script>
-</body>
-
+<html lang = "en">
+    <head>
+        <title>Gatorgotchi</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="./layout.css" />
+        <style>
+            h1 {
+                animation: gradientAnimation 8s ease infinite;
+            }
+            @keyframes gradientAnimation {
+                0% {
+                    background-position: 0% 50%;
+                }
+                50% {
+                    background-position: 100% 50%;
+                }
+                100% {
+                    background-position: 0% 50%;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class = "popupContainer">
+            <h1>GatorGotchi</h1>
+            <div class = "welcome">Welcome to GatorGotchi, a gamified version of micro learning!</div>
+            <div class = "statsContainer">
+                <div class = "healthContainer" style = "float: right">
+                <div class = "healthText" >health</div>
+                <div class = "healthBar" style = "float: right"></div>
+            </div>
+            <img class = "gator" src="./base_gif.gif" ></img>
+            <div class = "happinessContainer" style = "float: left">
+                <div class = "happinessText" style = "float: left">mood</div>
+                <div class = "happinessBar" style = "float: left"></div>
+            </div>
+            </div>
+            <div class = "lessonText">Today's lesson:</div>
+            <div class = "articleContainer">
+                <div class = "articleimage"></div>
+                <div class = "articleTitle"></div>
+            </div>
+            <div class = "quizText">Quiz:</div>
+            <div class = "quizContainer" >
+                <div class = "quizQuestion"></div>
+                <div class = "quizAnswers"></div>
+            </div>
+        </div>
+    </body>
 </html>
