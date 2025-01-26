@@ -10,6 +10,7 @@ h1, p {
     margin: 0;
     font-family: "Pixelify Sans", sans-serif;
     font-size: 24px; /* Adjust as needed */
+    text-align: center;
 }
 
 .welcome {
@@ -183,6 +184,7 @@ h1, p {
     justify-content: center; /* Aligns horizontally */
     align-items: center; /* Aligns vertically */
     height: 150px; /* Full viewport height to center vertically */
+    position: absolute;
 }
 
 .quizQuestion {
@@ -193,6 +195,7 @@ h1, p {
     padding: 10px;
     margin: 10px;
     border-radius: 40px;
+    position: relative;
 }
 
 #customSidebar {

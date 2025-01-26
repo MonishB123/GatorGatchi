@@ -86,6 +86,7 @@ fetch('http://127.0.0.1:5000/select_link') // Fetch link first
         }
         if (articleTitle) {
             articleTitle.textContent = title;
+            articleTitle.fontSize = "20px"
         }
 
         // Now that the link is available, call qmaker
@@ -112,6 +113,7 @@ fetch('http://127.0.0.1:5000/select_link') // Fetch link first
 
         // Set the question text
         quizQuestion.textContent = data.question;
+        quizQuestion.style.fontSize = "15px";
 
         // Clear previous answers (if any)
         const quizAnswersDiv = document.querySelector('.quizAnswers');
@@ -121,19 +123,39 @@ fetch('http://127.0.0.1:5000/select_link') // Fetch link first
         data.answers.forEach(answer => {
             const button = document.createElement('button');
             button.textContent = answer.answer;
+            button.style.fontSize = "10px";
+            button.style.margin = "5px"; // Add spacing between buttons
             button.classList.add('quizAnswerButton'); // Add a class for styling
 
             // Handle correct/incorrect answer selection
             button.onclick = () => {
                 if (answer.correct) {
                     alert("Correct!");
+                    
+                    // Change the gator image source when the answer is correct
+                    const gatorImage = sidebar.querySelector(".gator");
+                    if (gatorImage) {
+                        gatorImage.src = chrome.runtime.getURL("new_gator_image.gif"); // Change to the new gator image
+                    }
                 } else {
                     alert("Wrong answer! Try again.");
                 }
             };
+            
 
             quizAnswersDiv.appendChild(button); // Add button to quizAnswers div
         });
+
+        // **Dynamically adjust quizContainer size**
+        quizContainer.style.display = "flex";
+        quizContainer.style.flexDirection = "column";
+        quizContainer.style.alignItems = "center"; // Center content
+        quizContainer.style.padding = "10px";// Light background
+        quizContainer.style.borderRadius = "8px"; // Rounded corners
+        quizContainer.style.width = "auto"; // Fit content
+        quizContainer.style.maxWidth = "400px"; // Limit max width
+        quizContainer.style.margin = "10px auto"; // Center the quiz
     })
     .catch(error => console.error("Error:", error));
+
 

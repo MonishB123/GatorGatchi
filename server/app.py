@@ -46,7 +46,7 @@ def qmaker():
     prompt = (
         "Generate 1 question and its 3 multiple choice answers based on the following text, only fetch informatiom relating to the main topics of the text. Only one answer should be correct, the rest should be wrong. "
         "Only include the question and answers in the following JSON format, no filler:\n"
-        "Each question and answer should only be about 15 words each"
+        "Each question and answer should only be about 10 words each"
         "{'question': '...', 'answers': [{'answer': '...', 'correct': true}, {'answer': '...', 'correct': false}, ...]}"
         "If there is an error or the content is not meaningful, respond with: {'error': 'there was an error with your request'}\n"
         f"Text:\n{text}"
