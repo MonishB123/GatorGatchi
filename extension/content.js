@@ -69,61 +69,34 @@ toggleButton.addEventListener("click", () => {
     sidebar.style.display = sidebar.style.display === "none" ? "block" : "none";
 });
 
-// Fetch data from the API and update articleImage and articleTitle
-fetch('http://127.0.0.1:5000/select_link') // Replace with your Flask API URL
+fetch('http://127.0.0.1:5000/select_link') // Fetch link first
     .then(response => response.json())
     .then(data => {
         const link = data.link;
         const title = data.title;
+        let thelink = link;  // Assign link here
+        console.log("Fetched link:", thelink);
 
-        // Find the articleImage and articleTitle elements
+        // Update the article image and title
         const articleImage = document.querySelector('.articleimage');
         const articleTitle = document.querySelector('.articleTitle');
 
-        // Update the article image to be clickable and set the link
-        // Update the article image to be clickable and set the link
         if (articleImage) {
-            articleImage.href = link
+            articleImage.href = thelink; // Ensure it's clickable
         }
-
-        // Set the article title
         if (articleTitle) {
             articleTitle.textContent = title;
         }
 
+        // Now that the link is available, call qmaker
+        return fetch("http://127.0.0.1:5000/qmaker", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ url: thelink }) // Use the correct link
+        });
     })
-    .catch(error => console.error("Error fetching data from API:", error));
-
-async function fetchQuiz() {
-    try {
-        const response = await fetch('http://127.0.0.1:5000/qmaker', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ url: 'https://steamcommunity.com/workshop/browse/?appid=371970&browsesort=trend&section=readytouseitems' })
-        });
-        const data = await response.json();
-        
-        if (data.error) {
-            document.querySelector('.quizQuestion').innerText = "Error fetching quiz.";
-            return;
-        }
-        
-        document.querySelector('.quizQuestion').innerText = data.question;
-        const answersContainer = document.querySelector('.quizAnswers');
-        answersContainer.innerHTML = '';
-        
-        data.answers.forEach(answer => {
-            const label = document.createElement('label');
-            const checkbox = document.createElement('input');
-            checkbox.type = 'checkbox';
-            label.appendChild(checkbox);
-            label.appendChild(document.createTextNode(` ${answer.answer}`));
-            answersContainer.appendChild(label);
-            answersContainer.appendChild(document.createElement('br'));
-        });
-    } catch (error) {
-        console.error('Error fetching quiz:', error);
-    }
-}
-
-fetchQuiz();
+    .then(response => response.json())
+    .then(data => console.log("QMaker Response:", data))
+    .catch(error => console.error("Error:", error));

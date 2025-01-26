@@ -17,7 +17,7 @@ model = genai.GenerativeModel("gemini-1.5-flash")
 
 # Setup Flask API
 app = Flask(__name__)
-CORS(app)
+CORS(app, resources={r"/*": {"origins": "*"}})
 
 #generates a json object of questions and answers given a website, uses google genai
 @app.route('/qmaker', methods=['POST'])
@@ -25,7 +25,10 @@ def qmaker():
     print('request received')
     data = request.get_json()
     if not data or 'url' not in data:
-        return jsonify({"error": "Missing 'text' field"}), 400
+        response = jsonify({"error": "Missing 'url' field"})
+        response.headers.add("Access-Control-Allow-Origin", "*")
+        return response, 400
+
     
     text = data['url']
 
@@ -57,7 +60,13 @@ def qmaker():
 
     # Ensure the response is valid JSON
     parsed_response = json.loads(response)
-    return jsonify(parsed_response)
+    response = jsonify(parsed_response)
+    response.headers.add("Access-Control-Allow-Origin", "*")  # Ensure CORS is set
+    response.headers.add("Access-Control-Allow-Methods", "POST, OPTIONS")
+    response.headers.add("Access-Control-Allow-Headers", "Content-Type")
+    
+    return response
+
 
 #generates an image url given a website 
 @app.route('/find_image', methods=['POST'])
