@@ -88,7 +88,20 @@ def random_image():
     else:
         return jsonify({"error": f"Failed to fetch the webpage. Status Code: {response.status_code}"}), 400
 
+@app.route('/select_link')
+def select_link():
 
+    with open('server/articles.txt', 'r') as file:
+        articles = file.readlines()
+    articles = [line.strip() for line in articles]
+
+    with open('server/articleTitles.txt', 'r') as file:
+        titles = file.readlines()
+    titles = [line.strip() for line in titles]
+
+    i = random.randint(0, len(articles)-1)
+    print(i, len(articles), len(titles))
+    return jsonify({"link" : articles[i], "title" : titles[i]})
 
 if __name__ == "__main__":
     app.run(debug=True)

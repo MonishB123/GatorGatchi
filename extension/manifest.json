@@ -29,7 +29,7 @@
   ],
   "web_accessible_resources": [
     {
-      "resources": ["base_gif.gif", "popup.html", "layout.css"], 
+      "resources": ["base_gif.gif", "popup.html", "layout.css", "technology.jpg"], 
       "matches": ["<all_urls>"]
     }
   ]
