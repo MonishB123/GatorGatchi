@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang = "en">
     <head>
@@ -21,10 +23,20 @@
                     background-position: 0% 50%;
                 }
             }
+            body {
+                height: 600px;
+            }
+            .popupContainer {
+                width: 100%;  /* Ensure it's taking up full space */
+                min-height: 100%;  /* Allow it to grow based on content */
+                padding: 20px;
+                box-sizing: border-box;
+            }           
         </style>
     </head>
     <body>
-        <div class = "popupContainer">
+
+        <div class = "popupContainer" style="background: #DBDEAA;">
             <h1>GatorGotchi</h1>
             <div class = "welcome">Welcome to GatorGotchi, a gamified version of micro learning!</div>
             <div class = "statsContainer">
@@ -32,7 +44,7 @@
                 <div class = "healthText" >health</div>
                 <div class = "healthBar" style = "float: right"></div>
             </div>
-            <img class = "gator" src="../base_gif.gif" ></img>
+            <img class = "gator" src=base_gif.gif ></img>
             <div class = "happinessContainer" style = "float: left">
                 <div class = "happinessText" style = "float: left">mood</div>
                 <div class = "happinessBar" style = "float: left"></div>

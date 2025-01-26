@@ -1,29 +1,31 @@
 {
-    "manifest_version": 3,
-    "name": "GatorGatchi",
-    "version": "1.0",
-    "description": "A gator that helps you learn",
-    "icons": {
-      "128": "icon.png"
-    },
-    "permissions": ["storage"],
-    "host_permissions": ["https://gatorgachi.firebaseapp.com/",
-    "https://*.firebaseio.com/",
-    "https://*.googleapis.com/"] ,
-    "action": {
-      "default_popup": "public/popup.html"
-    },
-    "content_scripts": [
-      {
-        "matches": ["<all_urls>"],
-        "js" : ["content.js"],
-        "run_at": "document_idle"
-      }
-    ],
-    "web_accessible_resources": [
+  "manifest_version": 3,
+  "name": "GatorGatchi",
+  "version": "1.0",
+  "description": "A gator that helps you learn",
+  "icons": {
+    "128": "icon.png"
+  },
+  "permissions": ["storage"],
+  "host_permissions": [
+    "https://gatorgachi.firebaseapp.com/*",
+    "https://*.firebaseio.com/*",
+    "https://*.googleapis.com/*"
+  ],
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
     {
-      "resources": ["gator.gif"],
-      "matches": ["<all_urls>"]
+      "matches": ["https://www.youtube.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
     }
-    ]
-  }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["base_gif.gif", "popup.html", "layout.css"], 
+      "matches": ["https://www.youtube.com/*"]
+    }
+  ]
+}
