@@ -113,5 +113,19 @@ def select_link():
     print(i, len(articles), len(titles))
     return jsonify({"link" : articles[i], "title" : titles[i]})
 
+
+@app.route('/get_status')
+def get_status():
+    # Sample data, but you could load it from a file or database as needed
+  
+  with open('server/data.json', 'r') as file:
+    data = json.load(file)  # Parse the JSON data from the file
+
+
+    # Returning the data as JSON
+    return jsonify(data)
+
+
+
 if __name__ == "__main__":
     app.run(debug=True)
