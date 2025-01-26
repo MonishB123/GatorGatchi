@@ -38,6 +38,11 @@ h1, p {
     margin: 0 auto; /* Keep gator centered */
 }
 
+.technology {
+    width: 180px;
+    height: 110px;
+}
+
 .healthContainer {
     display: flex;
     flex-direction: column; /* Stack the text and bar vertically */
